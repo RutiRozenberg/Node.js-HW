@@ -12,7 +12,7 @@ const getAllProductById=async(categoryId )=>{
 
 const getProductById= async (categoryId ,productId)=>{
     const AllProducts=await getAllProductById(categoryId)
-    product = AllProducts.find(p=> p.id ===Number(productId))
+    const product = AllProducts.find(p=> p.id ===Number(productId))
     if(product){
         return product
     }
