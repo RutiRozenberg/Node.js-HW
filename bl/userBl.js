@@ -1,7 +1,9 @@
 const { userModel } = require('../services/userService')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const secret = '7hjfygjh45bnchn575ngjgfn5gffhgfdj54hgjn5da6eaad5efea6db9aeaa5c62a52fb91234bea83ba65544c710209fc'
+
+
+const secret = process.env.SECRET
 
 
 const getAllUsers = async () => {

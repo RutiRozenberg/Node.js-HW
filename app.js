@@ -2,10 +2,9 @@
 
 const express = require('express')
 const app = express()
-const port = 3000;
-var cors = require('cors')
+const cors = require('cors')
 const bodyParser = require('body-parser');
-
+const dotenv = require('dotenv')
 const categories = require('./controllers/categoryController.js')
 const products = require("./controllers/productsController.js")
 const users = require('./controllers/usersController.js')
@@ -13,7 +12,11 @@ const body = require('./midllewares/bodyMiddleware')
 const log = require("./midllewares/logMidlleware")
 const exisrUser = require("./midllewares/existUserMiddleware.js")
 const errors = require("./controllers/errorsController.js")
-const db= require("./services/db")
+
+dotenv.config()
+
+const port = process.env.PORT || 3000
+
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -27,4 +30,6 @@ app.use(categories)
 app.use(products)
 app.use(errors)
 
-app.listen(port, () => { console.log("http://localhost:3000"); });
+app.listen(port, () => {  
+    console.log(port); 
+});

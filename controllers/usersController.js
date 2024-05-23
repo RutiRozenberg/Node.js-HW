@@ -1,15 +1,9 @@
 #!/usr/bin/env node
 
-
-const fsPromises = require('fs').promises;
-
 const app = require('express').Router();
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
 const {getToken ,getUser,editUser} = require('../bl/userBl')
 
-const secret = '7hjfygjh45bnchn575ngjgfn5gffhgfdj54hgjn5da6eaad5efea6db9aeaa5c62a52fb91234bea83ba65544c710209fc'
 
 async function loadUsers() {
 

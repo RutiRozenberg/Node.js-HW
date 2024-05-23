@@ -1,12 +1,14 @@
+
 const mongoose = require('mongoose');
+
 mongoose.set("strictQuery", false);
 
-main().catch(err => console.log(err));
+main().catch((err) => console.log(err));
 
 async function main() {
-    await mongoose.connect('mongodb://localhost:27017/sale')
-}
 
+    await mongoose.connect(process.env.DATABASE_URL)
+}
 
 
 module.exports = main

@@ -2,7 +2,6 @@
 
 
 const app = require('express').Router();
-const { cwd } = require('process');
 const categoryService = require('../bl/categoryBl')
 
 
@@ -30,7 +29,7 @@ async function loadCategories() {
         try {
             const result =await categoryService.editCategory(req.body)
             res.send(result)
-        } catch (err) {
+        } catch {
             res.send('faild')
         }
     })
@@ -40,7 +39,8 @@ async function loadCategories() {
             const result = await categoryService.deleteCategory(req.params.id)
             res.send(result)
 
-        } catch {
+        } catch (err) {
+            // eslint-disable-next-line no-undef
             next(err)
         }
 
@@ -60,5 +60,6 @@ async function loadCategories() {
     })
 }
 loadCategories();
+
 
 module.exports = app;
