@@ -1,21 +1,15 @@
-#!/usr/bin/env node
-
-// const fsPromises = require('fs').promises;
 
 const app = require('express').Router();
-
-// const { log } = require('console');
 
 const productService= require('../bl/productsBl')
 
 
 async function loadProducts() {
 
-
     app.get('/products/:categoryId/:productId', async(req, res) => {
         const products = await productService.getProductById(req.params.categoryId , req.params.productId)
         if(products){
-            res.send(product)
+            res.send(products)
         }
         else{
             res.status(404).send("Not Found")
@@ -37,7 +31,7 @@ async function loadProducts() {
         try {
             const result = await productService.editProduct(req.params.categoryId , req.body)
             res.send(result)
-        } catch (err) {
+        } catch {
             res.send('faild')
         }
     })
@@ -45,7 +39,7 @@ async function loadProducts() {
 
     app.delete('/products/:categoryId/:productId', async(req, res) => {
         try {
-            const result = await productService.deleteProduct(req.params.categoryId , req.params.productId)
+            await productService.deleteProduct(req.params.categoryId , req.params.productId)
             res.send("Succeeded")
 
         } catch {
@@ -53,6 +47,8 @@ async function loadProducts() {
         }
 
     })
+
+    
     app.put('/products/:categoryId/:productId', async(req, res) => {
         try {
             const result = await productService.updateProduct(req.params.categoryId ,req.params.productId ,req.body )
@@ -65,7 +61,6 @@ async function loadProducts() {
 }
 
 loadProducts();
-
 
 
 module.exports = app;

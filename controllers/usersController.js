@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 
 const app = require('express').Router();
 
@@ -47,6 +46,8 @@ async function loadUsers() {
         }
     })
 }
+
+
 loadUsers()
 
 

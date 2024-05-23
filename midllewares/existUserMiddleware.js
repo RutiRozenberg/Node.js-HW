@@ -1,6 +1,8 @@
 
 const jwt = require('jsonwebtoken');
 
+require('dotenv').config();
+
 const secret = process.env.SECRET
 
 function existUser(req, res, next) {

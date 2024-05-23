@@ -1,13 +1,15 @@
 
 const mongoose = require('mongoose');
 
-mongoose.set("strictQuery", false);
+mongoose.set("strict", false);
+
+require('dotenv').config();
+const mongo = process.env.DATABASE_URL
 
 main().catch((err) => console.log(err));
 
 async function main() {
-
-    await mongoose.connect(process.env.DATABASE_URL)
+    await mongoose.connect(mongo)
 }
 
 

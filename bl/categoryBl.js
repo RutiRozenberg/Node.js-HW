@@ -1,5 +1,5 @@
-const { ProductModel } = require('../services/categoryService')
 
+const { ProductModel } = require('../services/categoryService')
 
 
 const getAllCategories = async() => {
@@ -7,6 +7,7 @@ const getAllCategories = async() => {
     const categories = await getAllDB()
     return categories.toSorted((c1,c2)=>{return c1.category.localeCompare(c2.category)})
 }
+
 
 async function getAllDB(){
     return await ProductModel.find().exec()
@@ -22,6 +23,7 @@ const getCategoryById = async(id) =>{
     return null
 }
 
+
 const updateCategory = async(id ,category) =>{
     const _id = {id:Number(id)}
     const _category= {category:category.category , products:category.products}
@@ -29,11 +31,13 @@ const updateCategory = async(id ,category) =>{
     return "Data Update!!"
 }
 
+
 const editCategory = async (category)=>{
     const c = { id:Number(category.id) , category:category.category ,products:[]} 
     await ProductModel.insertMany(c)
     return 'Data Received!'
 }
+
 
 const deleteCategory = async(id)=>{
     await ProductModel.deleteOne({ id: id });
@@ -48,4 +52,3 @@ module.exports = {
     editCategory,
     deleteCategory
 }
-

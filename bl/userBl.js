@@ -1,13 +1,14 @@
-const { userModel } = require('../services/userService')
+
+const { userModel }  = require('../services/userService')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+require('dotenv').config();
 
 const secret = process.env.SECRET
 
 
 const getAllUsers = async () => {
-
     const users = await userModel.find().exec()
     return users;
 }

@@ -4,7 +4,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const bodyParser = require('body-parser');
-const dotenv = require('dotenv')
+
 const categories = require('./controllers/categoryController.js')
 const products = require("./controllers/productsController.js")
 const users = require('./controllers/usersController.js')
@@ -13,10 +13,12 @@ const log = require("./midllewares/logMidlleware")
 const exisrUser = require("./midllewares/existUserMiddleware.js")
 const errors = require("./controllers/errorsController.js")
 
-dotenv.config()
+const db = require("./services/db")
 
-const port = process.env.PORT || 3000
+require('dotenv').config();
 
+app.use(db)
+const port = process.env.PORT 
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -31,5 +33,5 @@ app.use(products)
 app.use(errors)
 
 app.listen(port, () => {  
-    console.log(port); 
+    console.log(process.env.WEB_URL); 
 });

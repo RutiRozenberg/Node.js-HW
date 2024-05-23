@@ -1,13 +1,9 @@
-#!/usr/bin/env node
-
 
 const app = require('express').Router();
 const categoryService = require('../bl/categoryBl')
 
 
-
 async function loadCategories() {
-
 
     app.get("/category/:id", async(req, res) => {
         const category = await categoryService.getCategoryById(req.params.id);
@@ -59,6 +55,8 @@ async function loadCategories() {
     
     })
 }
+
+
 loadCategories();
 
 

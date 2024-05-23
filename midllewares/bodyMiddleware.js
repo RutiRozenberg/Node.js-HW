@@ -1,5 +1,4 @@
  
- 
 function CheckBody(req, res, next){
     console.log(req.method);
     if((req.method=='PUT' || req.method=='POST') && Object.keys(req.body).length==0){
@@ -9,5 +8,7 @@ function CheckBody(req, res, next){
         next()
     }
 }
+
+
 module.exports = CheckBody
   
